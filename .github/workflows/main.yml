@@ -2,14 +2,11 @@
 
 name: session-5
 
-# Controls when the action will run. 
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -35,14 +32,14 @@ jobs:
         uses: Borales/actions-yarn@v2.3.0
         with:
           # Yarn command
-            cmd: install
+          cmd: install
       
       - name: creating build
         run: yarn build
-        
+      
       - name: installing surge
         run: npm install -g surge
         
-      - name: deploying on surge
-        run: surge ./build http://nouman-context-reducer.surge.sh/ --token ${{secrets.SURGE_TOKEN}}
       
+      - name: deployin on surge
+        run: surge ./build http://nouman-context-reducer.surge.sh/ --token ${{secrets.SURGE_TOKEN}}
